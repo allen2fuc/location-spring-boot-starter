@@ -101,6 +101,26 @@ mvn k8s:resource k8s:apply
 ## 测试
 ```bash
 http {{SERVER_IP}}/location "ip==183.15.156.42"
+
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json
+Date: Thu, 18 Jan 2024 09:51:51 GMT
+Transfer-Encoding: chunked
+
+{
+    "code": 200,
+    "data": {
+        "city": "深圳市",
+        "country": "中国",
+        "isp": "电信",
+        "province": "广东省",
+        "region": "0"
+    },
+    "message": "success"
+}
+```
 或者
-curl "{{SERVER_IP}}/location?ip=183.15.156.42"
+```bash
+curl -v "{{SERVER_IP}}/location?ip=183.15.156.42"
 ```
