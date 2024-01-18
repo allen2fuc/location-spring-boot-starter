@@ -78,7 +78,7 @@ try (var ctx = SpringApplication.run(Main.class, args)) {
 ```
 
 ## 控制器代码
-[控制器.png](doc/控制器代码.png)
+![控制器.png](doc/控制器代码.png)
 
 
 
