@@ -1,0 +1,23 @@
+spec:
+  template:
+    spec:
+      # 指定自己的PVC
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            # 自己的PVC名称
+            claimName: cibnvst-etl-ufs2
+      containers:
+        # 挂载路径
+        - volumeMounts:
+            # 容器路径
+            - mountPath: /data/ip2region
+              name: data
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: LANG
+              value: C.UTF-8
+              # 指定文件名ip2region.db
+            - name: ip2region.xdb
+              value: /data/ip2region/ip2region.xdb

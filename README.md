@@ -71,3 +71,25 @@ try (var ctx = SpringApplication.run(Main.class, args)) {
     System.out.println(geoIP2Service.getLocationInfo("183.15.156.42"));
 }
 ```
+
+
+
+## 部署例子
+```bash
+1. 第一步编译打包
+mvn clean install
+
+2. 进入到web项目
+cd location-search-web
+
+3. 到成镜像包, allen2fuc是自己的hub的镜像仓库
+mvn k8s:build 
+
+4. 上传到dockerhub
+mvn k8s:push
+
+5. 生成k8s资源文件, 并且部署到k8s
+mvn k8s:resource k8s:apply
+
+
+```

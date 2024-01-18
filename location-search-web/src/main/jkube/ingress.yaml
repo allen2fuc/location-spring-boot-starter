@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: stat.v2.cp33.ott.cibntv.net
+      http:
+        paths:
+          - path: /location
+            pathType: Prefix
+            backend:
+              service:
+                name: location-search-web
+                port:
+                  number: 8080
+

@@ -11,7 +11,6 @@
     <modules>
         <module>ip2region-spring-boot-starter</module>
         <module>geoip-spring-boot-starter</module>
-        <module>test</module>
         <module>location-search-web</module>
     </modules>
 
@@ -67,5 +66,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
