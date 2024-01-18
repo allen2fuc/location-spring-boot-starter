@@ -101,4 +101,6 @@ mvn k8s:resource k8s:apply
 ## 测试
 ```bash
 http {{SERVER_IP}}/location "ip==183.15.156.42"
+或者
+curl "{{SERVER_IP}}/location?ip=183.15.156.42"
 ```
