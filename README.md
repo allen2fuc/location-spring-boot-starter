@@ -77,6 +77,9 @@ try (var ctx = SpringApplication.run(Main.class, args)) {
 }
 ```
 
+## 控制器代码
+[控制器.png](doc/控制器代码.png)
+
 
 
 ## 基于K8s部署例子
