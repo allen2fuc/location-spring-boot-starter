@@ -23,8 +23,14 @@ public class IP2RegionService implements InitializingBean, DisposableBean {
     }
 
     public IP2RegionInfo getIpLocation(String ipAddress) {
-        if (!isValidIPv4(ipAddress) || isInternalIp(ipAddress)) {
-            return null;
+        if (!isValidIPv4(ipAddress)) {
+            // 不是有效的IPv4地址，抛出异常
+            throw new IllegalArgumentException("Invalid IPv4 address: " + ipAddress);
+        }
+
+        if (isInternalIp(ipAddress)){
+            // 内网IP，抛出异常
+            throw new IllegalArgumentException("Inner IP: " + ipAddress + ", no need to search.");
         }
 
         try {
@@ -32,7 +38,7 @@ public class IP2RegionService implements InitializingBean, DisposableBean {
             return parseLocationInfo(locationString);
         } catch (LocationSearchException e) {
             // 处理地理位置搜索异常
-            return null;
+            throw new IllegalArgumentException("Parse location information failed for IP: " + ipAddress, e);
         }
     }
 
