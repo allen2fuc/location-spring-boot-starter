@@ -1,10 +1,15 @@
 ## 免费的 Spring Boot 地址插件
 
+这里实现两种方式
+
+- ip2region: 国内快速的IP检索器。
+- GeoIP：国外产品，全球的IP地址库，免费的不完善，完善的要钱。
+
 ### ip2region 的 xdb 下载地址
 
 您可以在以下链接下载 `ip2region.xdb` 文件：
 
-[https://github.com/lionsoul2014/ip2region/blob/6ed8bf011875208cdad30c90b08aaff45062c674/data/ip2region.xdb](https://github.com/lionsoul2014/ip2region/blob/6ed8bf011875208cdad30c90b08aaff45062c674/data/ip2region.xdb)
+[下载地址](https://github.com/lionsoul2014/ip2region/blob/6ed8bf011875208cdad30c90b08aaff45062c674/data/ip2region.xdb)
 
 要使用此插件，请将以下依赖添加到您的 Maven 项目的 `pom.xml` 文件中：
 
@@ -40,10 +45,10 @@ try (var ctx = SpringApplication.run(Main.class, args)) {
 您可以在以下链接下载 GeoIP 数据包，需要使用电子邮件登录：
 
 下载页面：
-[https://www.maxmind.com/en/accounts/421403/geoip/downloads](https://www.maxmind.com/en/accounts/421403/geoip/downloads)
+[下载页面](https://www.maxmind.com/en/accounts/421403/geoip/downloads)
 
 下载地址：
-[https://download.maxmind.com/app/geoip_download_by_token?edition_id=GeoLite2-City&date=20230822&suffix=tar.gz&token=v2.local.ryDCXCVi4mr35rnttZkZwB2kyx8yw3r2yKUzth7kwgCBRv8PAMKxzX-o1mnzPVpgcILzz5-PpenYmIC-bMl_j9cEkGiXwhfba_-PqEeQUiuLmPkgdNw5qSL3u5asmAyNBtYK7V-WmVQ9YhwJz5TizaW4kwhLbOvrLOVCvUTyND8dme-97xpHBFMo58a6EWWouyjx5A](https://download.maxmind.com/app/geoip_download_by_token?edition_id=GeoLite2-City&date=20230822&suffix=tar.gz&token=v2.local.ryDCXCVi4mr35rnttZkZwB2kyx8yw3r2yKUzth7kwgCBRv8PAMKxzX-o1mnzPVpgcILzz5-PpenYmIC-bMl_j9cEkGiXwhfba_-PqEeQUiuLmPkgdNw5qSL3u5asmAyNBtYK7V-WmVQ9YhwJz5TizaW4kwhLbOvrLOVCvUTyND8dme-97xpHBFMo58a6EWWouyjx5A)
+[下载地址](https://download.maxmind.com/app/geoip_download_by_token?edition_id=GeoLite2-City&date=20230822&suffix=tar.gz&token=v2.local.ryDCXCVi4mr35rnttZkZwB2kyx8yw3r2yKUzth7kwgCBRv8PAMKxzX-o1mnzPVpgcILzz5-PpenYmIC-bMl_j9cEkGiXwhfba_-PqEeQUiuLmPkgdNw5qSL3u5asmAyNBtYK7V-WmVQ9YhwJz5TizaW4kwhLbOvrLOVCvUTyND8dme-97xpHBFMo58a6EWWouyjx5A)
 
 要使用 GeoIP 插件，请将以下依赖添加到您的 Maven 项目的 `pom.xml` 文件中：
 
@@ -74,7 +79,7 @@ try (var ctx = SpringApplication.run(Main.class, args)) {
 
 
 
-## 部署例子
+## 基于K8s部署例子
 ```bash
 1. 第一步编译打包
 mvn clean install
@@ -90,6 +95,10 @@ mvn k8s:push
 
 5. 生成k8s资源文件, 并且部署到k8s
 mvn k8s:resource k8s:apply
+```
+![K8s部署图](doc/k8s检查图.png)
 
-
+## 测试
+```bash
+http {{SERVER_IP}}/location "ip==183.15.156.42"
 ```
